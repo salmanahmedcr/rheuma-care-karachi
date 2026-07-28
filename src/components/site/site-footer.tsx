@@ -73,6 +73,9 @@ export function SiteFooter() {
             </li>
           </ul>
           <div className="mt-4 flex flex-col gap-2">
+            <Link to="/online-consultation" className="text-sm font-medium text-primary">
+              Online video consultation →
+            </Link>
             <Link to="/book" className="text-sm font-medium text-primary">
               Book an appointment →
             </Link>

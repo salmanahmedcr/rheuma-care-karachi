@@ -189,6 +189,30 @@ function Home() {
       </Section>
 
       <Section className="!pt-0">
+        <div className="surface-card flex flex-col gap-5 p-6 md:flex-row md:items-center md:justify-between md:p-8">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">
+              Telemedicine
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold text-secondary md:text-3xl">
+              Online video consultation
+            </h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              Can&apos;t travel to a clinic? Consult Dr. Punshi by secure video call from anywhere in
+              Pakistan or abroad — reports reviewed beforehand, prescription sent the same evening.
+            </p>
+          </div>
+          <Link
+            to="/online-consultation"
+            className="shrink-0 rounded-xl bg-primary px-6 py-3 text-center text-sm font-semibold text-primary-foreground"
+          >
+            Learn more
+          </Link>
+        </div>
+      </Section>
+
+
+      <Section className="!pt-0">
         <BookingCta />
       </Section>
     </>
