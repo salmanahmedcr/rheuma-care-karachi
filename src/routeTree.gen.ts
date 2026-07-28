@@ -9,11 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VideosRouteImport } from './routes/videos'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LocationsIndexRouteImport } from './routes/locations.index'
 import { Route as ConditionsIndexRouteImport } from './routes/conditions.index'
+import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 import { Route as ConditionsSlugRouteImport } from './routes/conditions.$slug'
 
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -24,9 +38,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocationsIndexRoute = LocationsIndexRouteImport.update({
+  id: '/locations/',
+  path: '/locations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConditionsIndexRoute = ConditionsIndexRouteImport.update({
   id: '/conditions/',
   path: '/conditions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/locations/$slug',
+  path: '/locations/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConditionsSlugRoute = ConditionsSlugRouteImport.update({
@@ -38,39 +62,94 @@ const ConditionsSlugRoute = ConditionsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/reviews': typeof ReviewsRoute
+  '/videos': typeof VideosRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/conditions/': typeof ConditionsIndexRoute
+  '/locations/': typeof LocationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/reviews': typeof ReviewsRoute
+  '/videos': typeof VideosRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/conditions': typeof ConditionsIndexRoute
+  '/locations': typeof LocationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/reviews': typeof ReviewsRoute
+  '/videos': typeof VideosRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/conditions/': typeof ConditionsIndexRoute
+  '/locations/': typeof LocationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/conditions/$slug' | '/conditions/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/reviews'
+    | '/videos'
+    | '/conditions/$slug'
+    | '/locations/$slug'
+    | '/conditions/'
+    | '/locations/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/conditions/$slug' | '/conditions'
-  id: '__root__' | '/' | '/about' | '/conditions/$slug' | '/conditions/'
+  to:
+    | '/'
+    | '/about'
+    | '/reviews'
+    | '/videos'
+    | '/conditions/$slug'
+    | '/locations/$slug'
+    | '/conditions'
+    | '/locations'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/reviews'
+    | '/videos'
+    | '/conditions/$slug'
+    | '/locations/$slug'
+    | '/conditions/'
+    | '/locations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ReviewsRoute: typeof ReviewsRoute
+  VideosRoute: typeof VideosRoute
   ConditionsSlugRoute: typeof ConditionsSlugRoute
+  LocationsSlugRoute: typeof LocationsSlugRoute
   ConditionsIndexRoute: typeof ConditionsIndexRoute
+  LocationsIndexRoute: typeof LocationsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -85,11 +164,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations/': {
+      id: '/locations/'
+      path: '/locations'
+      fullPath: '/locations/'
+      preLoaderRoute: typeof LocationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/conditions/': {
       id: '/conditions/'
       path: '/conditions'
       fullPath: '/conditions/'
       preLoaderRoute: typeof ConditionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/$slug': {
+      id: '/locations/$slug'
+      path: '/locations/$slug'
+      fullPath: '/locations/$slug'
+      preLoaderRoute: typeof LocationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conditions/$slug': {
@@ -105,8 +198,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ReviewsRoute: ReviewsRoute,
+  VideosRoute: VideosRoute,
   ConditionsSlugRoute: ConditionsSlugRoute,
+  LocationsSlugRoute: LocationsSlugRoute,
   ConditionsIndexRoute: ConditionsIndexRoute,
+  LocationsIndexRoute: LocationsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
