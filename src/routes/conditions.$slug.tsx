@@ -61,7 +61,7 @@ function ConditionPage() {
 
             <h2 className="mt-10 text-xl font-semibold text-secondary">Common symptoms</h2>
             <ul className="mt-4 grid gap-3">
-              {condition.symptoms.map((s) => (
+              {condition.symptoms.map((s: string) => (
                 <li key={s} className="flex gap-3 text-muted-foreground">
                   <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
                   <span>{s}</span>
