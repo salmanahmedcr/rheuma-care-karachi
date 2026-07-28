@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ShieldCheck, Stethoscope, Clock, Star, MapPin, ArrowRight } from "lucide-react";
-import doctorPortrait from "@/assets/doctor-portrait.jpg";
+import doctorPortrait from "@/assets/doctor-portrait.png";
 import { CONDITIONS, DOCTOR, LOCATIONS, WHATSAPP_LINK } from "@/lib/site-data";
 import { BookingCta, Section, TrustBadge } from "@/components/site/ui";
 

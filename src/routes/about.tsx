@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import doctorPortrait from "@/assets/doctor-portrait.jpg";
+import doctorPortrait from "@/assets/doctor-portrait.png";
 import { DOCTOR } from "@/lib/site-data";
 import { BookingCta, PageHeader, Section } from "@/components/site/ui";
 
